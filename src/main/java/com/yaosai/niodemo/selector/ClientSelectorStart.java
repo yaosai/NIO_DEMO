@@ -47,7 +47,13 @@ public class ClientSelectorStart {
                 }
                 // 客户端要给服务发数据，而且服务端已准备好
                 if (sk.isWritable()) {
-
+                    SocketChannel client = (SocketChannel) sk.channel();
+                    ByteBuffer buffer = ByteBuffer.wrap("1234".getBytes());
+                    // 因为write和read是非阻塞方法
+                    // 所以为了确保读或写数据完整，需要加上hasRemaining()
+                    while (buffer.hasRemaining()) {
+                        sc.write(buffer);
+                    }
                 }
                 it.remove();
             }

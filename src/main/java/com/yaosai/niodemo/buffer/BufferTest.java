@@ -106,7 +106,6 @@ public class BufferTest {
         buffer.put(b4);
         buffer.put(b5);
         buffer.flip();
-
     }
 
     @Test
